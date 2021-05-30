@@ -32,8 +32,8 @@ class listClose(Resource):
         return format_csv.json_form(db, topk, 'close')
 
 api.add_resource(listAll, '/listAll', '/listAll/<string:dtype>')
-api.add_resource(listOpen, '/listOpen', '/listOpen/<string:dtype>')
-api.add_resource(listClose, '/listClose', '/listClose/<string:dtype>')
+api.add_resource(listOpen, '/listOpenOnly', '/listOpenOnly/<string:dtype>')
+api.add_resource(listClose, '/listCloseOnly', '/listCloseOnly/<string:dtype>')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

@@ -2,7 +2,7 @@ import flask
 
 def csv_form(db, k, all="all"):
     entries = db.tododb.find()
-    if k == -1:
+    if k <= 0 or k >=entries.count():
         k = entries.count()
     open = ['Open']
     close = ['Close']
@@ -27,7 +27,7 @@ def csv_form(db, k, all="all"):
 
 def json_form(db, k, all="all"):
     entries = db.tododb.find()
-    if k == -1:
+    if k <= 0 or k >=entries.count():
         k = entries.count()
     open = []
     close = []

@@ -27,9 +27,9 @@ def open():
     k = request.args.get("k", type=int) or -1
     csv = request.args.get("csv", type=str)
     if csv == None:
-        r = requests.get(f'http://restapi:5000/listOpen?top={k}')
+        r = requests.get(f'http://restapi:5000/listOpenOnly?top={k}')
     else:
-        r = requests.get(f'http://restapi:5000/listOpen/csv?top={k}')
+        r = requests.get(f'http://restapi:5000/listOpenOnly/csv?top={k}')
     return r.text
 
 @app.route('/close')
@@ -37,9 +37,9 @@ def close():
     k = request.args.get("k", type=int) or -1
     csv = request.args.get("csv", type=str)
     if csv == None:
-        r = requests.get(f'http://restapi:5000/listClose?top={k}')
+        r = requests.get(f'http://restapi:5000/listCloseOnly?top={k}')
     else:
-        r = requests.get(f'http://restapi:5000/listClose/csv?top={k}')
+        r = requests.get(f'http://restapi:5000/listCloseOnly/csv?top={k}')
     return r.text
 
 
