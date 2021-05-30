@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import flask
 import requests
 
 app = Flask(__name__)
@@ -11,17 +12,34 @@ def index():
 
 @app.route('/everything')
 def everything():
-    r = requests.get('http://restapi:5000/listAll')
+    k = request.args.get("k", type=int) or -1
+    csv = request.args.get("csv", type=str)
+    app.logger.debug("k = {}".format(k))
+    app.logger.debug("csv= {}".format(csv))
+    if csv == None:
+        r = requests.get(f'http://restapi:5000/listAll?top={k}')
+    else:
+        r = requests.get(f'http://restapi:5000/listAll/csv?top={k}')
     return r.text
 
 @app.route('/open')
 def open():
-    r = requests.get('http://restapi:5000/listOpen')
+    k = request.args.get("k", type=int) or -1
+    csv = request.args.get("csv", type=str)
+    if csv == None:
+        r = requests.get(f'http://restapi:5000/listOpen?top={k}')
+    else:
+        r = requests.get(f'http://restapi:5000/listOpen/csv?top={k}')
     return r.text
 
 @app.route('/close')
 def close():
-    r = requests.get('http://restapi:5000/listClose')
+    k = request.args.get("k", type=int) or -1
+    csv = request.args.get("csv", type=str)
+    if csv == None:
+        r = requests.get(f'http://restapi:5000/listClose?top={k}')
+    else:
+        r = requests.get(f'http://restapi:5000/listClose/csv?top={k}')
     return r.text
 
 

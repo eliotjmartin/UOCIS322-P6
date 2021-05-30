@@ -34,11 +34,11 @@ def json_form(db, k, all="all"):
     for i in entries:
         open.append(i['open'])
         close.append(i['close'])
-    open = open[0:k-1]
-    close = close[0:k-1]
-    response = {'Open':open, 'close':close}
+    open = open[0:k]
+    close = close[0:k]
+    response = {'Open':open, 'Close':close}
     if all == "open":
-        del response['close']
+        del response['Close']
     if all == "close":
-        del response['open']
+        del response['Open']
     return flask.jsonify(response)

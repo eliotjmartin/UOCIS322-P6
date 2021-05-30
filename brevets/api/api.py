@@ -14,22 +14,22 @@ class listAll(Resource):
     def get(self, dtype='json'):
         topk = request.args.get('top', default=-1, type=int)
         if dtype == 'csv':
-            return render_template("display.html", x=format_csv.csv_form(db, topk))
-        return render_template("display.html", x=format_csv.json_form(db, topk))
+            return format_csv.csv_form(db, topk)
+        return format_csv.json_form(db, topk)
 
 class listOpen(Resource):
     def get(self, dtype='json'):
         topk = request.args.get('top', default=-1, type=int)
         if dtype == 'csv':
-            return render_template("display.html", x=format_csv.csv_form(db, topk, "open"))
-        return render_template("display.html", x=format_csv.json_form(db, topk, "open"))
+            return format_csv.csv_form(db, topk, 'open')
+        return format_csv.json_form(db, topk, 'open')
 
 class listClose(Resource):
     def get(self, dtype='json'):
         topk = request.args.get('top', default=-1, type=int)
         if dtype == 'csv':
-            return render_template("display.html", x=format_csv.csv_form(db, topk, "close"))
-        return render_template("display.html", x=format_csv.json_form(db, topk, "close"))
+            return format_csv.csv_form(db, topk, 'close')
+        return format_csv.json_form(db, topk, 'close')
 
 api.add_resource(listAll, '/listAll', '/listAll/<string:dtype>')
 api.add_resource(listOpen, '/listOpen', '/listOpen/<string:dtype>')
